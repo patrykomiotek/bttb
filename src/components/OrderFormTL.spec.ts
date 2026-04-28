@@ -20,7 +20,7 @@ describe("OrderForm", () => {
 
     const symbolInput = screen.getByTestId("order-symbol");
     // await userEvent.type(symbolInput, 'XTB');
-    await fireEvent.change(symbolInput, { target: { value: "XTB" } });
+    await fireEvent.update(symbolInput, "XTB");
 
     const submitBtn = screen.getByRole("button");
     await fireEvent.click(submitBtn);
@@ -28,7 +28,7 @@ describe("OrderForm", () => {
     // Nieznany symbol: XTB
     // TODO: dodać toBeInTheDocument
     // expect(screen.getByText("Nieznany symbol: XTB")).toBeTruthy();
-    expect(screen.findByText("Nieznany symbol: XTB")).toBeVisible();
+    expect(await screen.findByText("Nieznany symbol: XTB")).toBeVisible();
     // expect(await screen.findByText(/nieznany symbol: xtb/i)).toBeInTheDocument();
   });
 });
