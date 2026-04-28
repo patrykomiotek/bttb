@@ -40,3 +40,13 @@ export interface ApiError {
 export type ApiResult<T> =
   | { ok: true; data: T }
   | { ok: false; error: ApiError };
+
+// Dodaj typ Portfolio z polami: balance (number), openPositions (Order[]), currency ('USD' | 'EUR' | 'PLN')
+
+type Currency = "USD" | "EUR" | "PLN";
+
+export type Portfolio = {
+  balance: number;
+  openPositions: Order[];
+  currency: Currency; // "USD" | "EUR" | "PLN"
+};
