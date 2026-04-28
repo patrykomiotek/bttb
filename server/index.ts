@@ -58,6 +58,25 @@ app.delete('/api/orders', (_req, res) => {
   res.status(204).end()
 })
 
+app.delete('/api/orders/:id', (req, res) => {
+  const before = orders.length
+  orders = orders.filter((o) => o.id !== req.params.id)
+  if (orders.length === before) {
+    return res.status(404).json({ code: 'NOT_FOUND', message: 'Zlecenie nie istnieje' })
+  }
+  res.status(204).end()
+})
+
+app.get('/api/feature-flags', (_req, res) => {
+  res.json({
+    flags: {
+      NEW_ORDER_FORM: true,
+      CRYPTO_TAB: true,
+      MARGIN_CALL_BANNER: false,
+    },
+  })
+})
+
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
 
 const server = http.createServer(app)

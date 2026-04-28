@@ -21,6 +21,16 @@ export const handlers = [
 
   http.get('*/api/instruments', () => HttpResponse.json(sampleInstruments)),
 
+  http.get('*/api/feature-flags', () =>
+    HttpResponse.json({
+      flags: {
+        NEW_ORDER_FORM: true,
+        CRYPTO_TAB: true,
+        MARGIN_CALL_BANNER: false,
+      },
+    }),
+  ),
+
   http.post('*/api/orders', async ({ request }) => {
     const body = (await request.json()) as OrderRequest
     const instr = sampleInstruments.find((i) => i.symbol === body.symbol)

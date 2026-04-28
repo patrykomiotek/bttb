@@ -64,6 +64,15 @@ _To jest świadomie otwarty punkt — nie ma jednej dobrej odpowiedzi. Chodzi o 
 
 ---
 
+## Część D ⚡ (dla doświadczonych - kalkulacje finansowe)
+
+Plik `src/utils/risk.ts` zawiera 4 funkcje: `portfolioValue`, `marginCallTriggered`, `lotsToUnits`, `volumeTier`.
+
+- [ ] Pokryjcie `portfolioValue` minimum 4 testami (zero pozycji, BUY+SELL mix, floating point: balance=100 + pozycja generująca 0.1+0.2)
+- [ ] Pokryjcie `marginCallTriggered` z naciskiem na **branch coverage**: zero pozycji, threshold dokładnie na granicy, `equity === usedMargin`
+- [ ] `volumeTier` z `it.each` — pokryjcie wszystkie progi i granice (0.0099, 0.01, 0.0999, 0.1, 9.99, 10)
+- [ ] **Mutation test ręczny:** zmieńcie `<` na `<=` w `volumeTier` — czy któryś z waszych testów łapie regresję?
+
 ## Część C ⚡ (dla szybszych par, 10 min)
 
 Zrefaktoryzujcie testy `validateVolume` na `it.each(...)`:

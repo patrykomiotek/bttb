@@ -48,6 +48,29 @@ Napiszcie testy dla wszystkich poniższych zachowań. Użyjcie `@vue/test-utils`
 
 ---
 
+## Wariant D ⚡ — composable z filtrem i sortowaniem
+
+`src/composables/useOrderHistory.ts` — bezstanowa logika filtrowania zamówień.
+
+Pokryjcie testami:
+- [ ] `add()` dodaje zlecenie, `clear()` resetuje
+- [ ] `filter.symbol = 'EUR'` zwraca tylko EURUSD
+- [ ] kombinacja filtrów `side` + `status`
+- [ ] sortowanie `volume` rosnąco i malejąco
+- [ ] zmiana `sortBy` w trakcie zmienia `sorted` reaktywnie
+
+**Klucz:** testowanie composable BEZ montowania komponentu. Po prostu wywołajcie `useOrderHistory(...)` w teście.
+
+## Wariant E ⚡ — InstrumentSearch z debounce
+
+`src/components/InstrumentSearch.vue` używa `debounce(250ms)` przed filtrowaniem.
+
+- [ ] Wpisanie `EUR` nie filtruje natychmiast (przed 250ms)
+- [ ] Po 250ms wyniki są przefiltrowane
+- [ ] Szybkie wpisanie 5 liter wywołuje filtrowanie tylko RAZ
+
+Użyjcie `vi.useFakeTimers()` + `vi.advanceTimersByTime(250)`.
+
 ## Wariant ⚡ dla szybszych par (30 min)
 
 Wybierzcie jedno z dwóch:

@@ -53,6 +53,25 @@ Composable `useRetryFetch` robi do 3 prób z backoffem. Napiszcie 4 testy:
 
 ---
 
+## Wariant D ⚡ — useFeatureFlags z fallbackiem
+
+`src/composables/useFeatureFlags.ts` — gdy API failuje, używa lokalnego defaultu.
+
+- [ ] API zwraca flagi → `flags.value` = merge defaults + response
+- [ ] API failuje → `usedFallback === true`, `flags.value` = defaults
+- [ ] Po fallbacku `loaded === true` (flow się nie wiesza)
+- [ ] Wstrzyknięcie częściowych flag (tylko 1 z 3) → reszta z defaultów
+
+## Wariant E ⚡ — race condition w retry
+
+W `useRetryFetch` symulujcie scenariusz: użytkownik klika "Odśwież" 2× szybko, gdy pierwszy retry trwa.
+
+- [ ] Czy widzicie race condition?
+- [ ] Co byście zmienili w composable, żeby ten scenariusz nie występował?
+- [ ] Napiszcie test który łapie problem (failuje w obecnej implementacji)
+
+_Cel: nauczenie się, że TEST może być narzędziem do **odkrywania** błędów, nie tylko ich utrwalania._
+
 ## Bonus — Mockowanie WebSocketów (15 min) ⚡
 
 `useInstrumentPrice.ts` otwiera prawdziwy `WebSocket`. W testach trzeba go podmienić.

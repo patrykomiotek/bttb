@@ -67,6 +67,43 @@ _Z agendy: „To jest intelektualne serce szkolenia. Uczestnik wychodzi z konkre
 
 ---
 
+## Wariant D ⚡ — fixture z autoryzacją i Page Object
+
+Wydzielcie:
+- [ ] `e2e/fixtures.ts` — fixture `authenticatedPage` (auto-login)
+- [ ] `e2e/pages/OrderPage.ts` — Page Object z metodami `fill(...)`, `submit()`, `expectSuccess()`
+- [ ] Przepiszcie testy ze Scenariusza 1 używając POM
+
+Porównanie: który styl czyta się lepiej dla **waszego zespołu**?
+
+## Wariant E ⚡ — visual regression z maskami
+
+Dodajcie test:
+```ts
+await expect(page.locator('[data-testid="order-form"]')).toHaveScreenshot({
+  mask: [page.locator('[data-testid="order-success"]')],
+})
+```
+
+- [ ] Uruchom raz (generuje baseline)
+- [ ] Zmień kolor przycisku w CSS → test failuje
+- [ ] Dyskusja: kiedy to ma sens, kiedy to anti-pattern?
+
+## Wariant F ⚡ — API contract test
+
+Bez UI:
+```ts
+test('POST /api/orders zwraca 201 z ID', async ({ request }) => {
+  const res = await request.post('http://localhost:3001/api/orders', {
+    data: { symbol: 'EURUSD', side: 'BUY', volume: 0.1 },
+  })
+  expect(res.status()).toBe(201)
+  expect(await res.json()).toMatchObject({ id: expect.stringMatching(/^ORD-/) })
+})
+```
+
+Granica: kiedy API contract test, kiedy E2E przez UI?
+
 ## Anti-flakiness — checklist (do wklejenia na ścianie)
 
 - Każdy test startuje od znanego stanu (reset API, świeża zakładka)
