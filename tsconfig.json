@@ -15,7 +15,7 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vitest/globals", "node"],
+    "types": ["vitest/globals", "node", "@testing-library/jest-dom/vitest"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -27,7 +27,8 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "server/**/*.ts",
-    "e2e/**/*.ts"
+    "e2e/**/*.ts",
+    "test/setup.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

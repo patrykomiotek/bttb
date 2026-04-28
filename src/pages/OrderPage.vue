@@ -5,6 +5,6 @@ import OrderForm from '@/components/OrderForm.vue'
 <template>
   <div>
     <h1 data-testid="order-title">Nowe zlecenie</h1>
-    <OrderForm />
+    <OrderForm  />
   </div>
 </template>
