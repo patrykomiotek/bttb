@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { useInstrumentsStore } from '@/stores/instruments'
 import { formatPrice, formatDelta } from '@/utils/formatters'
 
 const store = useInstrumentsStore()
 
-onMounted(() => {
-  if (store.items.length === 0) void store.load()
-})
+if (store.items.length === 0) {
+  void store.load()
+}
 </script>
 
 <template>
